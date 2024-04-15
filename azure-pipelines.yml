@@ -1,20 +1,17 @@
-# ASP.NET
-# Build and test ASP.NET projects.
-# Add steps that publish symbols, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/apps/aspnet/build-aspnet-4
-
 trigger:
 - master
 
 pool:
-   name: Default
-   demands:
-    - agent.name -equals Agent
+  name: Default
+  demands:
+  - agent.name -equals Agent
 
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  nuGetPackageId: 'YourPackageName'
+  nuGetPackageVersion: '1.0.0' 
 
 steps:
 - task: NuGetToolInstaller@1
@@ -34,3 +31,22 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+# Add a task to pack the class library project
+- task: DotNetCoreCLI@2
+  displayName: 'DotNet Pack'
+  inputs:
+    command: 'pack'
+    projects: '**/*YourClassLibraryProjectName.csproj'
+    configuration: '$(buildConfiguration)'
+    version: '$(nuGetPackageVersion)'
+    outputDir: '$(Build.ArtifactStagingDirectory)/nuget'
+
+# Add a task to push the NuGet package to Azure Artifacts
+- task: NuGetCommand@2
+  displayName: 'NuGet Push'
+  inputs:
+    command: 'push'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/nuget/**/*.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'Your-Azure-Artifacts-Feed-Name'
