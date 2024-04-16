@@ -10,8 +10,8 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  nuGetPackageId: 'YourPackageName'
-  nuGetPackageVersion: '1.0.0' 
+  nuGetPackageId: 'StringLibaryExample'
+  nuGetPackageVersion: '1.0.1' 
 
 steps:
 - task: NuGetToolInstaller@1
