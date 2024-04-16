@@ -37,7 +37,7 @@ steps:
   displayName: 'DotNet Pack'
   inputs:
     command: 'pack'
-    projects: '**/*StringLibaryExample.csproj'
+    projects: '**/*StringLibary.csproj'
     configuration: '$(buildConfiguration)'
     version: '$(nuGetPackageVersion)'
     outputDir: '$(Build.ArtifactStagingDirectory)/nuget'
