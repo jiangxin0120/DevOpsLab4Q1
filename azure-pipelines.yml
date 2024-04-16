@@ -11,7 +11,7 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   nuGetPackageId: 'StringLibaryExample'
-  nuGetPackageVersion: '1.0.1' 
+  nuGetPackageVersion: '1.0.0' 
 
 steps:
 - task: NuGetToolInstaller@1
