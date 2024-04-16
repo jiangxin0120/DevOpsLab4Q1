@@ -37,7 +37,7 @@ steps:
   displayName: 'DotNet Pack'
   inputs:
     command: 'pack'
-    projects: '**/*YourClassLibraryProjectName.csproj'
+    projects: '**/*StringLibary.csproj'
     configuration: '$(buildConfiguration)'
     version: '$(nuGetPackageVersion)'
     outputDir: '$(Build.ArtifactStagingDirectory)/nuget'
@@ -49,4 +49,4 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/nuget/**/*.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'Your-Azure-Artifacts-Feed-Name'
+    publishVstsFeed: 'StringLibary'
