@@ -49,4 +49,4 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/nuget/**/*.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'StringLibary'
+    publishVstsFeed: 'xjiang38'
